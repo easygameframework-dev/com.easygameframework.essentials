@@ -16,5 +16,6 @@
     "url": "https://github.com/easygameframework-dev/com.easygameframework.essentials"
   },
   "dependencies": {
+      "com.easytoolkit.core" : "1.0.0"
   }
 }

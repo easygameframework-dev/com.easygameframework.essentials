@@ -2,7 +2,9 @@
     "name": "EasyGameFramework.Essentials",
     "rootNamespace": "",
     "references": [
-        "EasyGameFramework"
+        "EasyGameFramework",
+        "EasyToolKit.Core",
+        "EasyToolKit.Inspector"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

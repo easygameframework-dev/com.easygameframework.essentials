@@ -1,7 +1,11 @@
 {
     "name": "EasyGameFramework.Essentials.Editor",
     "references": [
-        "EasyGameFramework.Essentials"
+        "EasyGameFramework.Essentials",
+        "EasyToolKit.Core",
+        "EasyToolKit.Core.Editor",
+        "EasyToolKit.Inspector",
+        "EasyToolKit.Inspector.Editor"
     ],
     "includePlatforms": [
         "Editor"
