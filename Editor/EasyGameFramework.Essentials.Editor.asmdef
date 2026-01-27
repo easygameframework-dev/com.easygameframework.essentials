@@ -5,7 +5,9 @@
         "EasyToolKit.Core",
         "EasyToolKit.Core.Editor",
         "EasyToolKit.Inspector",
-        "EasyToolKit.Inspector.Editor"
+        "EasyToolKit.Inspector.Editor",
+        "EasyGameFramework",
+        "EasyToolKit.Serialization"
     ],
     "includePlatforms": [
         "Editor"

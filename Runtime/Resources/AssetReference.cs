@@ -1,4 +1,5 @@
 ﻿using System;
+using EasyGameFramework.Core.Resource;
 using EasyToolKit.Inspector.Attributes;
 using UnityEngine;
 
@@ -20,6 +21,12 @@ namespace EasyGameFramework.Essentials
         {
             get => _assetName;
             set => _assetName = value;
+        }
+
+        public AssetReference(AssetAddress assetAddress)
+        {
+            _packageName = assetAddress.PackageName;
+            _assetName = assetAddress.Location;
         }
 
         public AssetReference(string packageName, string assetName)
