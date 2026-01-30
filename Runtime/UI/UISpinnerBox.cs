@@ -10,6 +10,8 @@ namespace EasyGameFramework.Essentials
 {
     public class UISpinnerBox : UIPanel
     {
+        public static UISpinnerBox LastSpinnerBox { get; set; }
+
         [Title("Bindings")]
         [SerializeField] private TextMeshProUGUI _percentageText;
         [SerializeField] private TextMeshProUGUI _descriptionText;

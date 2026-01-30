@@ -73,7 +73,7 @@ namespace EasyGameFramework.Essentials
 
         public virtual void CloseSelf()
         {
-            GameEntry.UI.CloseUIForm(UIForm);
+            GameEntry.GetComponent<UIComponent>().CloseUIForm(UIForm);
         }
 
         protected sealed override void OnInit(object userData)

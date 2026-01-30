@@ -11,6 +11,7 @@ namespace EasyGameFramework.Essentials
     /// </summary>
     public class GameSceneComponent : GameFrameworkComponent
     {
+        private SceneComponent _sceneComponent;
         private AssetAddress? _previousSceneAssetAddress;
         private bool _isLoading;
 
@@ -18,6 +19,12 @@ namespace EasyGameFramework.Essentials
         /// 获取当前活动的游戏场景。
         /// </summary>
         public Scene CurrentScene { get; private set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _sceneComponent = GameEntry.GetComponent<SceneComponent>();
+        }
 
         /// <summary>
         /// 加载游戏场景，支持可选的重试策略和进度回调。
@@ -193,10 +200,10 @@ namespace EasyGameFramework.Essentials
             Action<Scene> onSuccess,
             Action<Exception> onFailure)
         {
-            GameEntry.Scene.LoadSceneSuccess += OnLoadSceneSuccess;
-            GameEntry.Scene.LoadSceneFailure += OnLoadSceneFailure;
+            _sceneComponent.LoadSceneSuccess += OnLoadSceneSuccess;
+            _sceneComponent.LoadSceneFailure += OnLoadSceneFailure;
 
-            GameEntry.Scene.LoadScene(
+            _sceneComponent.LoadScene(
                 sceneAssetAddress,
                 userData: new LoadSceneParameters(LoadSceneMode.Additive));
 
@@ -204,8 +211,8 @@ namespace EasyGameFramework.Essentials
             {
                 if (e.SceneAssetAddress == sceneAssetAddress)
                 {
-                    GameEntry.Scene.LoadSceneSuccess -= OnLoadSceneSuccess;
-                    GameEntry.Scene.LoadSceneFailure -= OnLoadSceneFailure;
+                    _sceneComponent.LoadSceneSuccess -= OnLoadSceneSuccess;
+                    _sceneComponent.LoadSceneFailure -= OnLoadSceneFailure;
 
                     if (e.SceneAsset is not Scene scene)
                     {
@@ -221,8 +228,8 @@ namespace EasyGameFramework.Essentials
             {
                 if (e.SceneAssetAddress == sceneAssetAddress)
                 {
-                    GameEntry.Scene.LoadSceneSuccess -= OnLoadSceneSuccess;
-                    GameEntry.Scene.LoadSceneFailure -= OnLoadSceneFailure;
+                    _sceneComponent.LoadSceneSuccess -= OnLoadSceneSuccess;
+                    _sceneComponent.LoadSceneFailure -= OnLoadSceneFailure;
 
                     onFailure(new Exception(e.ErrorMessage));
                 }
@@ -313,17 +320,17 @@ namespace EasyGameFramework.Essentials
             Action onSuccess,
             Action<Exception> onFailure)
         {
-            GameEntry.Scene.UnloadSceneSuccess += OnUnloadSceneSuccess;
-            GameEntry.Scene.UnloadSceneFailure += OnUnloadSceneFailure;
+            _sceneComponent.UnloadSceneSuccess += OnUnloadSceneSuccess;
+            _sceneComponent.UnloadSceneFailure += OnUnloadSceneFailure;
 
-            GameEntry.Scene.UnloadScene(sceneAssetAddress);
+            _sceneComponent.UnloadScene(sceneAssetAddress);
 
             void OnUnloadSceneSuccess(object sender, UnloadSceneSuccessEventArgs e)
             {
                 if (e.SceneAssetAddress == sceneAssetAddress)
                 {
-                    GameEntry.Scene.UnloadSceneSuccess -= OnUnloadSceneSuccess;
-                    GameEntry.Scene.UnloadSceneFailure -= OnUnloadSceneFailure;
+                    _sceneComponent.UnloadSceneSuccess -= OnUnloadSceneSuccess;
+                    _sceneComponent.UnloadSceneFailure -= OnUnloadSceneFailure;
                     onSuccess();
                 }
             }
@@ -332,8 +339,8 @@ namespace EasyGameFramework.Essentials
             {
                 if (e.SceneAssetAddress == sceneAssetAddress)
                 {
-                    GameEntry.Scene.UnloadSceneSuccess -= OnUnloadSceneSuccess;
-                    GameEntry.Scene.UnloadSceneFailure -= OnUnloadSceneFailure;
+                    _sceneComponent.UnloadSceneSuccess -= OnUnloadSceneSuccess;
+                    _sceneComponent.UnloadSceneFailure -= OnUnloadSceneFailure;
                     onFailure(new Exception(e.ErrorMessage));
                 }
             }

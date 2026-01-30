@@ -53,7 +53,7 @@ namespace EasyGameFramework.Essentials
         protected override void OnInit(object userData, Action completed, Action<Exception> failed)
         {
             base.OnInit(userData);
-            GameEntry.Resource.LoadAsset(
+            GameEntry.GetComponent<ResourceComponent>().LoadAsset(
                 _buttonAsset.ToAssetAddress(),
                 new LoadAssetCallbacks(
                     (address, asset, duration, data) =>
