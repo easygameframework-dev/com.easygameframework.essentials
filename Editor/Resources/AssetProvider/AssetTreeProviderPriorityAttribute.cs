@@ -1,5 +1,5 @@
 ﻿using System;
-using EasyToolKit.Core.Mathematics;
+using EasyToolkit.Core.Mathematics;
 
 namespace EasyGameFramework.Essentials.Editor
 {

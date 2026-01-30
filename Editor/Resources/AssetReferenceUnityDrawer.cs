@@ -1,6 +1,6 @@
-﻿using EasyToolKit.Core;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Mathematics;
+﻿using EasyToolkit.Core;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Mathematics;
 using UnityEditor;
 using UnityEngine;
 

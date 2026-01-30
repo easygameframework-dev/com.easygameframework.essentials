@@ -3,9 +3,10 @@
     "rootNamespace": "",
     "references": [
         "EasyGameFramework",
-        "EasyToolKit.Core",
-        "EasyToolKit.Inspector",
-        "EasyToolKit.Serialization"
+        "EasyToolkit.Core",
+        "EasyToolkit.Inspector",
+        "Unity.TextMeshPro",
+        "EasyToolkit.Fluxion"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

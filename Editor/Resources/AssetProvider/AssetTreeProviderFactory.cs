@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using EasyToolKit.Core.Mathematics;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Mathematics;
+using EasyToolkit.Core.Reflection;
 
 namespace EasyGameFramework.Essentials.Editor
 {

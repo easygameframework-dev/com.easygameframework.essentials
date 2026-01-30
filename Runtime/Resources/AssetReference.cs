@@ -1,6 +1,6 @@
 ﻿using System;
 using EasyGameFramework.Core.Resource;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Inspector.Attributes;
 using UnityEngine;
 
 namespace EasyGameFramework.Essentials
@@ -43,6 +43,11 @@ namespace EasyGameFramework.Essentials
         public override string ToString()
         {
             return $"{_packageName}/{_assetName}";
+        }
+
+        public AssetAddress ToAssetAddress()
+        {
+            return new AssetAddress(_packageName, _assetName);
         }
 
         public bool Equals(AssetReference other)

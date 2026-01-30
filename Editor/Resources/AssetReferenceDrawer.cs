@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Collections;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Editor;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Collections;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Inspector.Editor;
 using UnityEditor;
 using UnityEngine;
 
