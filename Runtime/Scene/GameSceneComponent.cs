@@ -20,9 +20,8 @@ namespace EasyGameFramework.Essentials
         /// </summary>
         public Scene CurrentScene { get; private set; }
 
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
             _sceneComponent = GameEntry.GetComponent<SceneComponent>();
         }
 

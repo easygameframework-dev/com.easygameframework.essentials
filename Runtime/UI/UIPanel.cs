@@ -117,6 +117,7 @@ namespace EasyGameFramework.Essentials
 
         protected virtual void OnInit(object userData, Action completed, Action<Exception> failed)
         {
+            completed();
         }
 
         protected override void OnOpen(object userData)

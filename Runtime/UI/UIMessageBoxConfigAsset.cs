@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using EasyToolkit.Core;
 using EasyToolkit.Core.Patterns;
 using EasyToolkit.Inspector.Attributes;
 using UnityEngine;
@@ -12,7 +11,7 @@ namespace EasyGameFramework.Essentials
     {
         [Title("资源")]
         [LabelText("资源引用")]
-        [SerializeField] private AssetReference _assetReference;
+        [SerializeField] private AssetReference _assetReference = new("EasyGameFramework", "UI_MessageBox");
 
         [Title("UIMessageType文本")]
         [SerializeField] private string _tipTitle = "提示";

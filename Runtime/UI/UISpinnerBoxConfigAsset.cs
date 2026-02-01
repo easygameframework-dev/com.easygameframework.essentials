@@ -10,7 +10,7 @@ namespace EasyGameFramework.Essentials
     {
         [Title("资源")]
         [LabelText("资源引用")]
-        [SerializeField] private AssetReference _assetReference;
+        [SerializeField] private AssetReference _assetReference = new("EasyGameFramework", "UI_SpinnerBox");
 
         public AssetReference AssetReference => _assetReference;
     }
