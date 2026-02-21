@@ -3,6 +3,8 @@
     "rootNamespace": "",
     "references": [
         "EasyGameFramework",
+        "EasyGameFramework.Tasks",
+        "UniTask",
         "EasyToolkit.Core",
         "EasyToolkit.Inspector",
         "Unity.TextMeshPro",

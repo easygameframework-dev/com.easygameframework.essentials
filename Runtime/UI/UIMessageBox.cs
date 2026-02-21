@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using EasyGameFramework.Core.Resource;
+using EasyGameFramework.Tasks;
 using EasyToolkit.Inspector.Attributes;
 using TMPro;
 using UnityEngine;
@@ -50,19 +52,14 @@ namespace EasyGameFramework.Essentials
             }
         }
 
-        protected override void OnInit(object userData, Action completed, Action<Exception> failed)
+
+        protected override void OnInit(object userData)
         {
             base.OnInit(userData);
-            GameEntry.GetComponent<ResourceComponent>().LoadAsset(
-                _buttonAsset.ToAssetAddress(),
-                new LoadAssetCallbacks(
-                    (address, asset, duration, data) =>
-                    {
-                        _buttonPrefab = (GameObject)asset;
-                        completed();
-                    },
-                    (address, status, message, data) => { failed(new Exception(message)); }),
-                typeof(GameObject));
+            GameEntry.GetComponent<ResourceComponent>()
+                .LoadAssetAsync<GameObject>(_buttonAsset.ToAssetAddress())
+                .ContinueWith(o => _buttonPrefab = o)
+                .Forget();
         }
 
         protected override void OnOpen(object userData)

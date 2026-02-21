@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using EasyToolkit.Fluxion;
 using EasyToolkit.Fluxion.Core;
 using EasyToolkit.Fluxion.Extensions;
@@ -76,7 +77,7 @@ namespace EasyGameFramework.Essentials
             GameEntry.GetComponent<UIComponent>().CloseUIForm(UIForm);
         }
 
-        protected sealed override void OnInit(object userData)
+        protected override void OnInit(object userData)
         {
             base.OnInit(userData);
 
@@ -102,23 +103,19 @@ namespace EasyGameFramework.Essentials
                 _targets[i] = target;
             }
 
-            _isInitializing = true;
-            OnInit(userData, () =>
-            {
-                _isInitializing = false;
-                _pendingActionAfterInitialize?.Invoke();
-                _pendingActionAfterInitialize = null;
-            },
-            exception =>
-            {
-                throw new NotImplementedException();
-            });
+            InitAsync(userData).Forget();
         }
 
-        protected virtual void OnInit(object userData, Action completed, Action<Exception> failed)
+        protected async UniTask InitAsync(object userData)
         {
-            completed();
+            _isInitializing = true;
+            await OnInitAsync(userData);
+            _isInitializing = false;
+            _pendingActionAfterInitialize?.Invoke();
+            _pendingActionAfterInitialize = null;
         }
+
+        protected virtual UniTask OnInitAsync(object userData) => UniTask.CompletedTask;
 
         protected override void OnOpen(object userData)
         {
@@ -139,19 +136,6 @@ namespace EasyGameFramework.Essentials
             {
                 OnOpenCompleted();
                 OpenCompleted?.Invoke();
-            });
-        }
-
-        protected override void OnClose(bool isShutdown, object userData)
-        {
-            base.OnClose(isShutdown, userData);
-            gameObject.SetActive(true);
-
-            DoAnimation(_closeAnimation, _closeDuration, () =>
-            {
-                gameObject.SetActive(false);
-                OnCloseCompleted();
-                CloseCompleted?.Invoke();
             });
         }
 
